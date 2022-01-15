@@ -14,10 +14,11 @@ namespace webServer{
         _address.sin_family = AF_INET;
         _address.sin_port = htons(port);
         _address.sin_addr.s_addr = inet_addr(interface.c_str());
-        setsockopt(_sockFD, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt, sizeof(opt));
+        setsockopt(_sockFD, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt));
         int res = bind(_sockFD, (struct sockaddr *)&_address, _addrlen);
         if (res < 0){
-            throw Socketexeption("socket Bind");
+            throw Socketexeption(strerror(errno));
+            // throw Socketexeption("socket Bind");
         }
     }
     int const &__socket::getsocket() const{
