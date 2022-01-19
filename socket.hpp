@@ -30,7 +30,9 @@ namespace webServer
             struct sockaddr_in &_address;
             size_t     _addrlen;
         public:
-            __socket(int port, std::string host, struct sockaddr_in &address);
+            // __socket(int port, std::string host, struct sockaddr_in &address);
+            __socket(struct sockaddr_in &address);
+            int     init(int port, std::string host);
             void bindSock(int port, std::string interface);
             int const   &getsocket() const;
             ~__socket();

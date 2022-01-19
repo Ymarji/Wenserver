@@ -1,6 +1,7 @@
 #ifndef WEBSERV_HPP
 #define WEBSERV_HPP
 #include "socket.hpp"
+#include <sys/event.h>
 #include "data.hpp"
 
 namespace webServer{
@@ -15,7 +16,8 @@ namespace webServer{
     size_t    listSize(t_fdlist *root);
     class server{
         private:
-        typedef int sock_fd;
+            typedef int sock_fd;
+            data        *_data;
             __socket    sock;
             struct sockaddr_in _address;
             sock_fd     master_socket;
@@ -26,7 +28,7 @@ namespace webServer{
             server(data *data);
             void    init();
             char    *req_string();
-            std::string readReq(int fd);
+            std::string readReq(int fd, size_t _size);
             ~server();
     };
 }

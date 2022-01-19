@@ -25,7 +25,7 @@ data  *fakedata(){
     {
         //2nd server block
         _n_data->server.port = 3000;
-        _n_data->server.host = "localhost";
+        _n_data->server.host = "127.0.0.1";
         _n_data->server.server_name = "exemple.com";
         _n_data->server.root = "/src";
         //location
@@ -39,6 +39,7 @@ data  *fakedata(){
         //redirection
         _n_data->server.redirection.code = 301;
         _n_data->server.redirection._url = "/";
+        _n_data->next = nullptr;
     }
     return _data;
 }
